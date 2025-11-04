@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 
+var moment = require("moment");
+
 // const trip = require("./trips");
 // const fetch = require('node-fetch');
 const Trip = require("../models/trips");
@@ -16,8 +18,12 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   const cityDeparture = req.body.departure;
   const cityArrival = req.body.arrival;
-  let reqCityDate = new Date(req.body.date);
-  reqCityDate = Date.parse(reqCityDate);
+  // let reqCityDate = new Date(req.body.date);
+  // reqCityDate = Date.parse(reqCityDate);
+  const reqCityDate = Date.parse(new Date(moment(req.body.date, "YYYY-MM-DD")));
+  console.log(reqCityDate);
+  console.log(typeof reqCityDate);
+  //
   if (!cityDeparture || !cityArrival || !reqCityDate) {
     res.json({result: false, error: "Missing or empty fields"});
   } else {
