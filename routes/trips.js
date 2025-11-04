@@ -33,7 +33,7 @@ router.post("/", (req, res) => {
           }
         }
 
-        res.json({trips: arr});
+        res.json({result: true, trips: arr});
       } else {
         res.json({result: false, error: "Trips not found"});
       }
