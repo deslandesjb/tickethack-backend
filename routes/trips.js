@@ -28,9 +28,19 @@ router.post("/", (req, res) => {
       const date = Date.now();
       console.log(date);
       if (data) {
-        console.log(data[0].date);
-        console.log(typeof data[0].date);
-        res.json({trips: data});
+        const date = Date.now();
+        const filteredData = [];
+        for (let i = 0; i < data.length; i++) {
+          // console.log(date);
+          // console.log(data.length);
+          const dateToNum = Number(data[i].date);
+          // console.log(dateToNum);
+          if (date < dateToNum) {
+            console.log("if", data[i]);
+            filteredData.push(data[i]);
+            res.json({trips: filteredData});
+          }
+        }
       } else {
         res.json({result: false, error: "Trips not found"});
       }
