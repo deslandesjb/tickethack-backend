@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 });
 
 /* GET only trips filtered. */
-router.get("/", (req, res) => {
+router.get("/:cityDeparture", (req, res) => {
   Trip.find().then((data) => {
     res.json({trips: data});
   });
