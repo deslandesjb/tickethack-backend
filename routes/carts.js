@@ -61,20 +61,30 @@ router.post("/", (req, res) => {
 //       res.json({result: false, error: error.message});
 //     });
 // });
-//console.log(cart.findByIdAndDelete(cartId))
+// console.log(cart.findByIdAndDelete(cartId));
 
 /*le backend c'est vraiment trop galere quand tu ne sais pas quoi faire vraiment j'ai du reviser tout le cour dessus  😂*/
 
 // -------------------------------------
-router.delete("/", (req, res) => {
-  const tripId = req.body.tripId;
+router.delete("/:cartId", (req, res) => {
+  const cartId = req.params.cartId;
   //
-  if (!tripId) {
+  if (!cartId) {
     res.json({result: false, error: "Missing or empty fields"});
   } else {
-    Trip.deleteOne({_id: tripId}).then((data) => res.json({allTrips: data}));
-
-    // Trip.deleteMany().then((data) => res.json({allTrips: data}));
+    Cart.find({_id: cartId}).then((data) => {
+      // console.log(cartId);
+      // Cart.deleteOne();
+      // const index = Trip.findIndex((e) => e._id === cartId);
+      // console.log(index);
+      if (data && data.length > 0) {
+        Cart.deleteOne({_id: cartId}).then((data) => {
+          res.json({result: true, error: "Trip deleted"});
+        });
+      } else {
+        res.json({result: false, error: "Trip unfounded"});
+      }
+    });
   }
 });
 
