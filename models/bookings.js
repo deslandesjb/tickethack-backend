@@ -1,13 +1,15 @@
 const mongoose = require("mongoose");
 
 const bookingSchema = mongoose.Schema({
-  trips: [{
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: "trips"
-  }],
+  trips: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "trips",
+    },
+  ],
   purchaseDate: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   totalPrice: Number,
 });

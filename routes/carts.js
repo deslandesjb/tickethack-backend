@@ -44,28 +44,26 @@ router.post("/", (req, res) => {
   }
 });
 
-//petite maj pour supprimer un trajet du panier 👍 
+//petite maj pour supprimer un trajet du panier 👍
 /* DELETE a trip de cart normalement..  */
-router.delete("/:cartId", (req, res) => {
-  const cartId = req.params.cartId;
-  
-  Cart.findByIdAndDelete(cartId)
-    .then((deletedCart) => {
-      if (deletedCart) {
-        res.json({ result: true, message: "Trip removed from cart" });
-      } else {
-        res.json({ result: false, error: "Cart item not found" });
-      }
-    })
-    .catch(error => {
-      res.json({ result: false, error: error.message });
-    });
-});
+// router.delete("/:cartId", (req, res) => {
+//   const cartId = req.params.cartId;
+
+//   Cart.findByIdAndDelete(cartId)
+//     .then((deletedCart) => {
+//       if (deletedCart) {
+//         res.json({result: true, message: "Trip removed from cart"});
+//       } else {
+//         res.json({result: false, error: "Cart item not found"});
+//       }
+//     })
+//     .catch((error) => {
+//       res.json({result: false, error: error.message});
+//     });
+// });
 //console.log(cart.findByIdAndDelete(cartId))
 
 /*le backend c'est vraiment trop galere quand tu ne sais pas quoi faire vraiment j'ai du reviser tout le cour dessus  😂*/
-
-
 
 // -------------------------------------
 router.delete("/", (req, res) => {
