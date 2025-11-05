@@ -16,8 +16,8 @@ router.get("/", (req, res) => {
 
 /* GET only trips filtered. */
 router.post("/", (req, res) => {
-  const cityDeparture = req.body.departure;
-  const cityArrival = req.body.arrival;
+  const cityDeparture = req.body.departure[0].toUpperCase() + req.body.departure.slice(1).toLowerCase();
+  const cityArrival = req.body.arrival[0].toUpperCase() + req.body.arrival.slice(1).toLowerCase();
   // let reqCityDate = new Date(req.body.date);
   // let reqCityDate = req.body.date;
   // console.log(cityDeparture, cityArrival, reqCityDate);
