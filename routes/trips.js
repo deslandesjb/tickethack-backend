@@ -28,7 +28,7 @@ router.post("/", (req, res) => {
     res.json({result: false, error: "Missing or empty fields"});
   } else {
     Trip.find({departure: cityDeparture, arrival: cityArrival}).then((data) => {
-      if (data) {
+      if (data && data.length > 0) {
         let arr = [];
         for (let i = 0; i < data.length; i++) {
           // convert each data.date into number
