@@ -19,10 +19,13 @@ router.post("/", (req, res) => {
   const cityDeparture = req.body.departure;
   const cityArrival = req.body.arrival;
   // let reqCityDate = new Date(req.body.date);
-  // reqCityDate = Date.parse(reqCityDate);
+  // let reqCityDate = req.body.date;
+  // console.log(cityDeparture, cityArrival, reqCityDate);
+  // console.log(typeof reqCityDate);
   const reqCityDate = Date.parse(new Date(moment(req.body.date, "YYYY-MM-DD")));
-  console.log(reqCityDate);
-  console.log(typeof reqCityDate);
+
+  // console.log(reqCityDate);
+  // console.log(typeof reqCityDate);
   //
   if (!cityDeparture || !cityArrival || !reqCityDate) {
     res.json({result: false, error: "Missing or empty fields"});
@@ -34,7 +37,9 @@ router.post("/", (req, res) => {
           // convert each data.date into number
           let dataDate = data[i].date;
           dataDate = Date.parse(dataDate);
-          if (reqCityDate <= dataDate) {
+          let dataDateEnd = reqCityDate + 86400000;
+          // console.log(reqCityDate);
+          if (reqCityDate <= dataDate && dataDate <= dataDateEnd) {
             arr.push(data[i]);
           }
         }
