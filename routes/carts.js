@@ -45,6 +45,19 @@ router.post("/", (req, res) => {
 });
 
 // -------------------------------------
+router.delete("/", (req, res) => {
+  const tripId = req.body.tripId;
+  //
+  if (!tripId) {
+    res.json({result: false, error: "Missing or empty fields"});
+  } else {
+    Trip.deleteOne({_id: tripId}).then((data) => res.json({allTrips: data}));
+
+    // Trip.deleteMany().then((data) => res.json({allTrips: data}));
+  }
+});
+
+// -------------------------------------
 // Cart.find({trips: tripId}).then((data) => {
 //   console.log(data);
 // });
